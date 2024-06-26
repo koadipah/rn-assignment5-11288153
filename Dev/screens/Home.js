@@ -1,5 +1,6 @@
-import React from 'react';
-import { View, Text, Button, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
+import React, {useContext} from 'react';
+import { View, Text, Button, StyleSheet, Image, FlatList, TouchableHighlight } from 'react-native';
+import { ThemeContext } from '../component/theme';
 
 
 const transactions = [
@@ -10,9 +11,12 @@ const transactions = [
 ];
 
 
-export default function Home({ navigation }) {
+export default function Home({ navigation}) {
+
+    const { backgroundColor, color } = useContext(ThemeContext);
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor }]}>
       <View style={styles.headerContainer}>
         <View style={styles.profileContainer}>
           <Image source={require('../assets/images/profile.png')} style={styles.image} />
@@ -71,10 +75,13 @@ export default function Home({ navigation }) {
       <View style={styles.footerContainer}>
       <View style={styles.footerItems1}>
         <Image source={require('../assets/images/home.png')} />
-        <Button
-        title="Home"
-        onPress={() => navigation.navigate('Home')}
-        />
+        <TouchableHighlight
+        style={styles.clickableText}
+        underlayColor="#DDDDDD"
+        onPress={() => navigation.navigate('Settings')}
+      >
+        <Text style={styles.text1}>Home</Text>
+      </TouchableHighlight>
       </View>
       <View style={styles.footerItems1}>
         <Image source={require('../assets/images/myCards.png')} />
@@ -86,10 +93,13 @@ export default function Home({ navigation }) {
       </View>
       <View style={styles.footerItems1}>
         <Image source={require('../assets/images/settings.png')} />
-        <Button
-        title="Settings"
+        <TouchableHighlight
+        style={styles.clickableText}
+        underlayColor="#DDDDDD"
         onPress={() => navigation.navigate('Settings')}
-        />
+      >
+        <Text style={styles.text1}>Settings</Text>
+      </TouchableHighlight>
       </View>
     </View>
     </View>
@@ -99,7 +109,6 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         paddingHorizontal: 30,
       },
       headerContainer: {

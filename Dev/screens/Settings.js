@@ -1,66 +1,75 @@
-import React from 'react';
-import { View, Text, Button, StyleSheet, Image, ScrollView  } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, Switch, StyleSheet, Image, ScrollView, TouchableHighlight } from 'react-native';
+import { ThemeContext } from '../component/theme';
+
 
 export default function Settings({ navigation }) {
+    const { isEnabled, backgroundColor, color, toggleSwitch } = useContext(ThemeContext);
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor} ]}>
       <View style={styles.headerContainer}>
-        <Text style={styles.settingsText}>Settings</Text>
+        <Text style={[styles.settingsText, {color}]}>Settings</Text>
       </View>
       <ScrollView>
         <View style={styles.textContainer}>
-          <Text>Language</Text>
+          <Text style={{ color }}>Language</Text>
           <Image source={require('../assets/images/arrow.png')} style={styles.image} />
         </View>
         <View style={styles.line} />
         <View style={styles.textContainer}>
-          <Text>My profile</Text>
+          <Text style={{ color }}>My profile</Text>
           <Image source={require('../assets/images/arrow.png')} style={styles.image} />
         </View>
         <View style={styles.line} />
         <View style={styles.textContainer}>
-          <Text>Contact Us</Text>
+          <Text style={{ color }}>Contact Us</Text>
           <Image source={require('../assets/images/arrow.png')} style={styles.image} />
         </View>
         <View style={styles.line} />
         <View style={styles.textContainer}>
-          <Text>Change Password</Text>
+          <Text style={{ color }}>Change Password</Text>
           <Image source={require('../assets/images/arrow.png')} style={styles.image} />
         </View>
         <View style={styles.line} />
         <View style={styles.textContainer}>
-          <Text>Privacy Policy</Text>
+          <Text style={{ color }}>Privacy Policy</Text>
           <Image source={require('../assets/images/arrow.png')} style={styles.image} />
         </View>
         <View style={styles.line} />
-        <View style={styles.switchContainer}>
-          <Text style={styles.boldText}>Theme</Text> 
+        <View style={styles.textContainer}>
+          <Text style={[styles.boldText, {color}]}>Theme</Text>
+          <Switch onValueChange={toggleSwitch} value={isEnabled} />
         </View>
       </ScrollView>
       <View style={styles.footerContainer}>
-      <View style={styles.footerItems1}>
-        <Image source={require('../assets/images/home.png')} />
-        <Button
-        title="Home"
-        onPress={() => navigation.navigate('Home')}
-        />
+        <View style={styles.footerItems1}>
+          <Image source={require('../assets/images/home.png')} />
+          <TouchableHighlight
+            style={styles.clickableText}
+            onPress={() => navigation.navigate('Home')}
+          >
+            <Text style={[styles.text, {color}]}>Home</Text>
+          </TouchableHighlight>
+        </View>
+        <View style={styles.footerItems1}>
+          <Image source={require('../assets/images/myCards.png')} />
+          <Text style={{ color }}>My Cards</Text>
+        </View>
+        <View style={styles.footerItems1}>
+          <Image source={require('../assets/images/statictics.png')} />
+          <Text style={{ color }}>Statistics</Text>
+        </View>
+        <View style={styles.footerItems1}>
+          <Image source={require('../assets/images/settings.png')} />
+          <TouchableHighlight
+            style={styles.clickableText}
+            onPress={() => navigation.navigate('Settings')}
+          >
+            <Text style={[styles.text, {color}]}>Settings</Text>
+          </TouchableHighlight>
+        </View>
       </View>
-      <View style={styles.footerItems1}>
-        <Image source={require('../assets/images/myCards.png')} />
-        <Text>My Cards</Text>
-      </View>
-      <View style={styles.footerItems1}>
-        <Image source={require('../assets/images/statictics.png')} />
-        <Text>Statistics</Text>
-      </View>
-      <View style={styles.footerItems1}>
-        <Image source={require('../assets/images/settings.png')} />
-        <Button
-        title="Settings"
-        onPress={() => navigation.navigate('Settings')}
-        />
-      </View>
-    </View>
     </View>
   );
 }
@@ -68,46 +77,43 @@ export default function Settings({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     paddingHorizontal: 30,
   },
   settingsText: {
     fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center', 
-    marginTop: 40 
+    textAlign: 'center',
+    marginTop: 40,
   },
-    boldText: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginTop: 80,
-    },
-    textContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: 20,
-    },
-    image: {
-        height: 20,
-        width: 20,
-        borderRadius: 50,
-    },
-    line: {
-        height: 1,
-        backgroundColor: '#000',
-        marginVertical: 10,
-    },
-    footerContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 20
-    },
-    footerItems1: {
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-
+  boldText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  textContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  image: {
+    height: 20,
+    width: 20,
+    borderRadius: 50,
+  },
+  line: {
+    height: 1,
+    backgroundColor: '#000',
+    marginVertical: 10,
+  },
+  footerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  footerItems1: {
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
 });
