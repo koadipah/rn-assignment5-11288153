@@ -21,8 +21,8 @@ export default function Home({ navigation}) {
         <View style={styles.profileContainer}>
           <Image source={require('../assets/images/profile.png')} style={styles.image} />
           <View>
-            <Text>Welcome back, </Text>
-            <Text style={styles.profileBold}>John Doe</Text>
+            <Text style = {{color}}>Welcome back, </Text>
+            <Text style={[styles.profileBold, {color}]}>John Doe</Text>
           </View>
         </View>
         <Image source={require('../assets/images/search(1).png')} style={styles.image} />
@@ -33,24 +33,24 @@ export default function Home({ navigation}) {
       <View style={styles.scrollContainer}>
         <View style={styles.footerItems}>
           <Image source={require('../assets/images/send.png')} />
-          <Text>Sent</Text>
+          <Text  style = {{color}}>Sent</Text>
         </View>
         <View style={styles.footerItems}>
           <Image source={require('../assets/images/recieve.png')} />
-          <Text>Receive</Text>
+          <Text  style = {{color}}>Receive</Text>
         </View>
         <View style={styles.footerItems}>
           <Image source={require('../assets/images/loan(1).png')} />
-          <Text>Loan</Text>
+          <Text  style = {{color}}>Loan</Text>
         </View>
         <View style={styles.footerItems}>
           <Image source={require('../assets/images/topUp.png')} />
-          <Text>Top Up</Text>
+          <Text  style = {{color}}>Top Up</Text>
         </View>
       </View>
       <View style={styles.textContainer}>
-        <Text>Transactions</Text>
-        <Text style={styles.blueText}>See All</Text>
+        <Text  style = {{color}}>Transactions</Text>
+        <Text style={[styles.blueText, {color}]}>See All</Text>
       </View>
       <FlatList
         data={transactions}
@@ -60,7 +60,7 @@ export default function Home({ navigation}) {
             <View style={styles.imageAndText}>
               <Image source={item.image} style={styles.transactionImage} />
               <View>
-                <Text style={styles.text}>{item.title}</Text>
+                <Text style={[styles.text, {color}]}>{item.title}</Text>
                 <Text>{item.subtitle}</Text>
               </View>
             </View>
